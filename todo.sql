@@ -22,10 +22,24 @@ INSERT INTO todos (title, details, priority, created_at, completed_at)
     ('write 1 more todos', '11 after this one; 12 counting this one', 3, '2017-08-19 10:44:49.565052', NULL),
     ('write NO more todos', 'NONE after this one; NONE counting this one', 6, '2016-08-28 10:44:49.565052', '2017-08-29 10:44:49.565052');
 
-SELECT * FROM todos WHERE completed_at IS NULL AND priority = 3;
+SELECT *
+  FROM todos
+  WHERE completed_at IS NULL AND priority = 3;
 
-SELECT priority, COUNT(priority) FROM todos WHERE completed_at IS NULL GROUP BY priority ORDER BY priority ASC;
+SELECT priority, COUNT(priority)
+  FROM todos
+  WHERE completed_at IS NULL
+  GROUP BY priority
+  ORDER BY priority ASC;
 
-SELECT priority, COUNT(priority) FROM todos WHERE age(created_at) < '0 years 30 days' GROUP BY priority ORDER BY priority ASC;
+SELECT priority, COUNT(priority)
+  FROM todos
+  WHERE age(created_at) < '0 years 30 days'
+  GROUP BY priority
+  ORDER BY priority ASC;
 
-SELECT title, MAX(created_at), priority FROM todos GROUP BY title, priority ORDER BY MIN(priority) ASC LIMIT 1;
+SELECT title, MIN(created_at), priority
+  FROM todos
+  GROUP BY title, priority
+  ORDER BY MIN(priority), MAX(created_at)
+  ASC LIMIT 1;
