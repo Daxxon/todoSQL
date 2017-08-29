@@ -24,9 +24,8 @@ INSERT INTO todos (title, details, priority, created_at, completed_at)
 
 SELECT * FROM todos WHERE completed_at IS NULL AND priority = 3;
 
-SELECT * FROM todos WHERE completed_at IS NULL ORDER BY priority DESC;
+SELECT priority, COUNT(priority) FROM todos WHERE completed_at IS NULL GROUP BY priority ORDER BY priority ASC;
 
-SELECT * FROM todos WHERE age(created_at) < '0 years 30 days';
-
+SELECT priority, COUNT(priority) FROM todos WHERE age(created_at) < '0 years 30 days' GROUP BY priority ORDER BY priority ASC;
 
 SELECT title, MAX(created_at), priority FROM todos GROUP BY title, priority ORDER BY MIN(priority) ASC LIMIT 1;
